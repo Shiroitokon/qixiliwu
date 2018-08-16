@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>媳妇要啥礼物啊</title>
+  </head>
+  <body>
+    <div id="wantgit">
+    <div style="position:absolute; right:100px;">
+    <img src="./static/output_1534389768.gif"  height="400" width="600"></img>
+  </div>
+  <div style="position:absolute;right:300px; top: 400px;">
+    <input type="text" placeholder="输入媳妇想要的礼物"/>
+  </div>
+
+      <button  onclick="nogit()" style="position:absolute;right:500px; top: 450px;" type="button">不想要礼物</button>       
+      <button id="yes" style="position:absolute;right:200px; top: 450px;" type="button" onmouseover="randomPosition()">确定</button>  
+    </div>
+
+    <div id="nogit" style="display: none">
+        <div style="position:absolute; right:100px;">
+        <img src="./static/ok.jpg"  height="400" width="600"></img>
+      </div>
+          <button  onclick="test()" style="position:absolute;right:400px; top: 450px;" type="button">关闭</button>       
+        </div>
+
+    <script>
+      const ipc = require('electron').ipcRenderer;
+      function randomPosition() {
+        var node = document.getElementById("yes");
+        var height = Math.random()*(500+1)
+        var top = Math.random()*(400+1)
+        node.style.right = height + "px";
+        node.style.top = top + "px";
+      }
+
+      function nogit() {
+        var wantgit = document.getElementById("wantgit");
+        wantgit.style.display="none";
+        var nogit = document.getElementById("nogit");
+        nogit.style.display="block";
+      }
+
+
+    function test() {
+      console.log(ipc)
+      console.log(11)
+        ipc.send("close-wind")
+        console.log(11)
+    }
+    </script>
+  </body>
+</html>
